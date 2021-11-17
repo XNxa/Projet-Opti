@@ -1,7 +1,7 @@
 # Optinum - Méthodes numériques pour les problèmes d’optimisation
 
 ## Rendu
-Le projet est à rendre sous Moodle *le vendredi 17 décembre à 18h00*. Vous rendrez un fichier compressé `nom du binome .tgz` qui déarchivez contiendra un répertoire `votre nom` qui lui-même contiendra vos répertoire Optinum et TestOptinum. Votre notebook doit se trouver dans le sous répertoire `Optinum/src`.
+Le projet est à rendre sous Moodle *le vendredi 17 décembre à 18h00*. Vous rendrez un fichier compressé `votre nom.tgz` qui déarchivez contiendra un répertoire `votre nom` qui lui-même contiendra vos répertoire Optinum et TestOptinum. Votre notebook doit se trouver dans le sous répertoire `Optinum/src`.
 
 ## Instalation de julia et jupyter notebook sur vos machines
 
