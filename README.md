@@ -8,7 +8,7 @@ Afin de tester vos codes il faut faire une mise à jour d'optinum. Pour cela dan
  
 `> git pull`
 
-Vous obtiendrer alors dans le répertoire test un fichier `new_runtests.jl` qu'il suffira de lancer.
+Vous obtiendrez alors dans le répertoire test un fichier `new_runtests.jl` qu'il suffira de lancer.
 
 
 ## récupération d'Optinum
