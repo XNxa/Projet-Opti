@@ -2,11 +2,15 @@
 
 ## Mise à jour des tests unitaires
 
-### Attention : afin d'éviter tout problème sauvegardez votre répertoire src (voire test si vous l'avez modifié) dans optinum
+Afin de tester vos codes il faut faire une mise à jour d'optinum. 
 
-Afin de tester vos codes il faut faire une mise à jour d'optinum. Pour cela dans votre répertoire `optinum` il faut taper:
+- Déplacer les fichiers que vous avez modifiés dans `src` (`Algorithme_De_Newton.jl`, ...)
+
+- Dans votre répertoire `optinum` tapez :
  
 `> git pull`
+
+- Remettre les fichiers déplacés dans `src`
 
 Vous obtiendrez alors dans le répertoire test un fichier `new_runtests.jl` qu'il suffira de lancer.
 
