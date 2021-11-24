@@ -1,13 +1,16 @@
 # Optinum
 
+## Mise à jour des tests unitaires
+Afin de tester vos codes il faut faire une mise à jour d'optinum. Pour cela dans votre répertoire optinum il faut : 
+`> git pull`
+
+Vous obtiendrer alors dans le répertoire test un fichier `new_runtests.jl` qu'il suffira de lancer.
+
+
 
 Pour récupérer Optinum, il faut cloner ce dépot git : 
 
 `> git clone https://gitlab.irit.fr/toc/mathn7/optimisation-numerique/optinum.git`
-
-Pour récupérer les tests unitaires
-
-`> git clone https://gitlab.irit.fr/toc/mathn7/optimisation-numerique/optinum-test.git`
 
 Ensuite, pour accéder au sujet du TP ouvrir
 
@@ -15,7 +18,6 @@ Ensuite, pour accéder au sujet du TP ouvrir
 
 optinum/src contient le corps (à compléter) des algorithmes d'optimisation vus en cours d'Optimisation Numérique.
 
-`optinum-test/src` contient les tests unitaires que vous avez à compléter.
 
 #### Fichiers à ne pas modifier : 
    * `src/Optinum.jl`
