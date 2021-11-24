@@ -1,7 +1,10 @@
 # Optinum
 
 ## Mise à jour des tests unitaires
-Afin de tester vos codes il faut faire une mise à jour d'optinum. Pour cela dans votre répertoire optinum il faut taper:
+
+### Attention : afin d'éviter tout problème sauvegardez votre répertoire src (voire test si vous l'avez modifié) dans optinum
+
+Afin de tester vos codes il faut faire une mise à jour d'optinum. Pour cela dans votre répertoire `optinum` il faut taper:
  
 `> git pull`
 
