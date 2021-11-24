@@ -49,11 +49,9 @@ function Algorithme_De_Newton(f::Function,gradf::Function,hessf::Function,x0,opt
         Tol_abs = options[2]
         Tol_rel = options[3]
     end
-
-        n = length(x0)
-        xmin = zeros(n)
-        f_min = 0
+        xmin = x0
+        f_min = f(x0)
         flag = 0
         nb_iters = 0
-        return xmin,f_min,flag,nb_iters
+    return xmin,f_min,flag,nb_iters
 end

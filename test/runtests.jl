@@ -1,18 +1,34 @@
 using Markdown
 using Test
 using LinearAlgebra
-using TestOptinum
-using Optinum
 
 include("../src/Algorithme_De_Newton.jl")
 include("../src/Gradient_Conjugue_Tronque.jl")
 include("../src/Lagrangien_Augmente.jl")
-include("../src/Pas_De_Cauchy.jl")
+include("../src/Pas_De_Cauchy.jl")#
 include("../src/Regions_De_Confiance.jl")
 
-TestOptinum.cacher_stacktrace()
+#include("cacher_stacktrace.jl")
+#cacher_stacktrace()
 
-affiche = false
+
+# Tolérance pour les tests d'égalité
+tol_erreur = sqrt(eps())
+
+## ajouter les fonctions de test
+include("./fonctions_de_tests.jl")
+
+include("./tester_algo_newton.jl")
+
+include("tester_pas_de_cauchy.jl")
+#
+include("tester_gct.jl")
+
+include("tester_regions_de_confiance.jl")
+
+include("tester_lagrangien_augmente.jl")
+
+affiche = true
 println("affiche = ",affiche)
 # Tester l'ensemble des algorithmes
 @testset "Test SujetOptinum" begin
