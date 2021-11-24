@@ -4,7 +4,7 @@
 
 Afin de tester vos codes il faut faire une mise à jour d'optinum. 
 
-- Déplacer les fichiers que vous avez modifiés dans `src` (`Algorithme_De_Newton.jl`, ...)
+- Déplacer les fichiers de `src` que vous avez modifiés (`Algorithme_De_Newton.jl`, ...)
 
 - Dans votre répertoire `optinum` tapez :
  
