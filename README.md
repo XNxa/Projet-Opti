@@ -1,5 +1,15 @@
 # Optinum
 
+## Mise à jour pour jupyter-notebook
+- Supprimer les répertoires `.julia` et `.jupyter`
+- lancer julia et ajouter le package `IJulia`: 
+  - `julia> ]`
+  - `(@v1.4) pkg> add IJulia
+
+Dans un terminal vous pouvez alors lancer `jupyter-notebook`
+
+
+
 ## Mise à jour des tests unitaires
 
 Afin de tester vos codes il faut faire une mise à jour d'optinum. 

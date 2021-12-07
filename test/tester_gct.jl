@@ -53,7 +53,7 @@ function tester_gct(afficher::Bool,Gradient_Conjugue_Tronque::Function)
         grad = [2,1]        #  g^T H g > 0 sol à l'itération 2, saturation
         delta = 6
         s = Gradient_Conjugue_Tronque(grad,Hess,[delta;max_iter;tol])
-        @test  s ≈ [0.48997991959774634, 5.979959839195494] atol = tol_test
+        @test  isapprox(s, [0.48997991959774634, 5.979959839195494], atol = tol_test) || iapprox(s, [-4.489979919597747, -3.979959839195493], atol = tol_test)
         
         # le cas de test 3
         #grad = [-2 ; 1]
