@@ -20,12 +20,5 @@ optinum/src contient le corps (à compléter) des algorithmes d'optimisation vus
 
 ## Recommandations importantes
 
- Fichiers à ne pas modifier : 
+Seuls les fichiers dans le répertoire `src` sont à modifier !
 
-   * `src/Optinum.jl`
-   * `test/runtests.jl`
-   * `Project.toml`
-   * `Manifest.toml`
-   * `docs/Project.toml`
-   * `docs/Manifest.toml`
-   * `docs/assets/`
