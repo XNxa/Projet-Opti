@@ -12,11 +12,8 @@ Pour récupérer les sources, il faut cloner ce dépot git :
 
 ## Accès au sujet du projet
 
-Ensuite, pour accéder au sujet du TP ouvrir
-
-`optinum/docs/build/index.html`
-
-optinum/src contient le corps (à compléter) des algorithmes d'optimisation vus en cours d'Optimisation Numérique.
+Ensuite, pour accéder au sujet du projet ouvrir
+`projet-optinum/docs/build/index.html`.
 
 ## Recommandations importantes
 
