@@ -18,9 +18,9 @@ où la fonction ``f`` est de classe ``C^{2}`` sur ``R^{n}`` . On cherche donc à
 par ses dérivées première et seconde, que l’on représente en tout point x par le vecteur
 gradient ``\nabla f (x) \in R^{n}`` et la matrice Hessienne ``\nabla^{2} f (x) \in R^{n\times n}``.
 
-[1) Algorithme de Newton local](newton.md)
+[1) Algorithme de Newton local](docs/newton.md)
 
-[2) La méthode des régions de confiance](regions-de-confiance.md)
+[2) La méthode des régions de confiance](docs/regions-de-confiance.md)
 
 
 ## Optimisation avec contraintes
@@ -31,4 +31,4 @@ Dans cette partie, nous nous intéressons à la résolution des problèmes sous 
 
 où C est un sous-ensemble non vide de ``\mathbb{R}^{n}``.
 
-[3) Lagrangien Augmenté](lagrangien-augmente.md)
+[3) Lagrangien Augmenté](docs/lagrangien-augmente.md)
