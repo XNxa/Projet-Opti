@@ -1,4 +1,4 @@
-# Sujet du projet d'optimisation numérique
+# Documentation pour le projet d'optimisation numérique
 
 La première partie de ce TP-projet concerne les problèmes d’optimisation sans
 contraintes. On étudie la méthode de Newton et sa globalisation par l’algorithme des
