@@ -1,44 +1,21 @@
-# Optinum
+# Projet d'optimisation numérique
 
-## Mise à jour pour jupyter-notebook
-- Supprimer les répertoires `.julia` et `.jupyter`
-- lancer julia et ajouter le package `IJulia`: 
-  - `julia> ]`
-  - `(@v1.4) pkg> add IJulia
+Vous trouverez ci-dessous comment récupérer les sources du projet, comment accéder au sujet et des recommandations.
 
-Dans un terminal vous pouvez alors lancer `jupyter-notebook`
+## Récupération des sources du projet
 
-## Mise à jour des tests unitaires
+Pour récupérer les sources, il faut cloner ce dépot git : 
 
-Afin de tester vos codes il faut faire une mise à jour d'optinum. 
+```bash
+ git clone https://gitlab.irit.fr/toc/mathn7/optimisation-numerique/projet-optinum.git
+ ```
 
-- Déplacer les fichiers de `src` que vous avez modifiés (`Algorithme_De_Newton.jl`, ...)
+## Accès au sujet du projet
 
-- Dans votre répertoire `optinum` tapez :
- 
-`> git pull`
+Ensuite, pour accéder au sujet du projet ouvrir
+`projet-optinum/docs/build/index.html`.
 
-- Remettre les fichiers déplacés dans `src`
+## Recommandations importantes
 
-Vous obtiendrez alors dans le répertoire test un fichier `new_runtests.jl` qu'il suffira de lancer.
+Seuls les fichiers dans le répertoire `src` sont à modifier !
 
-## récupération d'Optinum
-Pour récupérer Optinum, il faut cloner ce dépot git : 
-
-`> git clone https://gitlab.irit.fr/toc/mathn7/optimisation-numerique/optinum.git`
-
-Ensuite, pour accéder au sujet du TP ouvrir
-
-`optinum/docs/build/index.html`
-
-optinum/src contient le corps (à compléter) des algorithmes d'optimisation vus en cours d'Optimisation Numérique.
-
-
-#### Fichiers à ne pas modifier : 
-   * `src/Optinum.jl`
-   * `test/runtests.jl`
-   * `Project.toml`
-   * `Manifest.toml`
-   * `docs/Project.toml`
-   * `docs/Manifest.toml`
-   * `docs/assets/`
