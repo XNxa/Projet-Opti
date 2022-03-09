@@ -22,7 +22,6 @@ Afin de tester vos codes il faut faire une mise à jour d'optinum.
 
 Vous obtiendrez alors dans le répertoire test un fichier `new_runtests.jl` qu'il suffira de lancer.
 
-
 ## récupération d'Optinum
 Pour récupérer Optinum, il faut cloner ce dépot git : 
 
