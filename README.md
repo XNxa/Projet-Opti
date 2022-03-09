@@ -8,8 +8,6 @@
 
 Dans un terminal vous pouvez alors lancer `jupyter-notebook`
 
-
-
 ## Mise à jour des tests unitaires
 
 Afin de tester vos codes il faut faire une mise à jour d'optinum. 
