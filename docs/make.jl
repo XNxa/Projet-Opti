@@ -1,21 +1,20 @@
 using Documenter
-using Optinum
-
+#using Optinum
 
 makedocs(    
-    modules = [Optinum],
-    sitename = "Optinum.jl",
+    #modules = [Optinum],
+    #sitename = "Optinum.jl",
     authors = "Saloua Naama, Mohamed El Waghf et Rachid ELMontassir",
     format = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true"),
     pages = [
             "Accueil" => "index.md",
-	    "Sujet" => "Sujet.md",
+	        "Sujet" => "Sujet.md",
             "Algorithmes" => [
-            "L'algorithme de Newton local" => "Algorithme_de_newton.md",
-            "La méthode des régions de confiance" => "Regions_de_confiance.md",    
-            "La méthode du Lagrangien augmenté" => "Lagrangien_augmente.md"                
+                "L'algorithme de Newton local" => "Algorithme_de_newton.md",
+                "La méthode des régions de confiance" => "Regions_de_confiance.md",    
+                "La méthode du Lagrangien augmenté" => "Lagrangien_augmente.md"                
             ],
-	    "Index des fonctions" =>"fct_index.md",
+	        "Index des fonctions" =>"fct_index.md",
             "Annexes" => "Annexes.md",
             #"Exemples d'appels" =>"Exemples.md",
             "Installation de Julia et tests unitaires" => "mise_en_place.md",
