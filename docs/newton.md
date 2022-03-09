@@ -2,7 +2,7 @@
 
 ## Principe
 
-La fonction ``f`` étant ``C^{2}`` , on peut remplacer ``f`` au voisinage de l’itéré courant ``x_{k}`` par son développement de Taylor au second ordre, soit :
+La fonction $`f`$ étant ``C^{2}`` , on peut remplacer ``f`` au voisinage de l’itéré courant ``x_{k}`` par son développement de Taylor au second ordre, soit :
 
 ``f(y) \sim q(y)=f\left(x_{k}\right)+\nabla f\left(x_{k}\right)^{T}\left(y-x_{k}\right)+\frac{1}{2}\left(y-x_{k}\right)^{T} \nabla^{2} f\left(x_{k}\right)\left(y-x_{k}\right)``
 
