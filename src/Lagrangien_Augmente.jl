@@ -1,5 +1,7 @@
 @doc doc"""
-Résolution des problèmes de minimisation sous contraintes d'égalités
+# Objet
+
+Résolution des problèmes de minimisation sous contraintes d'égalités par l'algorithme du lagrangien augmenté
 
 # Syntaxe
 ```julia
@@ -8,32 +10,32 @@ Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
 ```
 
 # Entrées
-  * **algo** 		   : (String) l'algorithme sans contraintes à utiliser:
-    - **"newton"**  : pour l'algorithme de Newton
-    - **"cauchy"**  : pour le pas de Cauchy
-    - **"gct"**     : pour le gradient conjugué tronqué
-  * **fonc** 		   : (Function) la fonction à minimiser
-  * **contrainte**	   : (Function) la contrainte [x est dans le domaine des contraintes ssi ``c(x)=0``]
-  * **gradfonc**       : (Function) le gradient de la fonction
-  * **hessfonc** 	   : (Function) la hessienne de la fonction
-  * **grad_contrainte** : (Function) le gradient de la contrainte
-  * **hess_contrainte** : (Function) la hessienne de la contrainte
-  * **x0** 			   : (Array{Float,1}) la première composante du point de départ du Lagrangien
-  * **options**		   : (Array{Float,1})
-    1. **epsilon** 	   : utilisé dans les critères d'arrêt
-    2. **tol**         : la tolérance utilisée dans les critères d'arrêt
-    3. **itermax** 	   : nombre maximal d'itération dans la boucle principale
-    4. **lambda0**	   : la deuxième composante du point de départ du Lagrangien
-    5. **mu0,tho** 	   : valeurs initiales des variables de l'algorithme
+  - algo 		   : (String) l'algorithme sans contraintes à utiliser:
+    - "newton"  : pour l'algorithme de Newton
+    - "cauchy"  : pour le pas de Cauchy
+    - "gct"     : pour le gradient conjugué tronqué
+  - fonc 		   : (Function) la fonction à minimiser
+  - contrainte	   : (Function) la contrainte [x est dans le domaine des contraintes ssi ``c(x)=0``]
+  - gradfonc       : (Function) le gradient de la fonction
+  - hessfonc 	   : (Function) la hessienne de la fonction
+  - grad_contrainte : (Function) le gradient de la contrainte
+  - hess_contrainte : (Function) la hessienne de la contrainte
+  - x0 			   : (Array{Float,1}) la première composante du point de départ du Lagrangien
+  - options		   : (Array{Float,1})
+    1. epsilon 	   : utilisé dans les critères d'arrêt
+    2. tol         : la tolérance utilisée dans les critères d'arrêt
+    3. itermax 	   : nombre maximal d'itération dans la boucle principale
+    4. lambda0	   : la deuxième composante du point de départ du Lagrangien
+    5. mu0,tho 	   : valeurs initiales des variables de l'algorithme
 
 # Sorties
-* **xmin**		   : (Array{Float,1}) une approximation de la solution du problème avec contraintes
-* **fxmin** 	   : (Float) ``f(x_{min})``
-* **flag**		   : (Integer) indicateur du déroulement de l'algorithme
-   - **0**    : convergence
-   - **1**    : nombre maximal d'itération atteint
-   - **(-1)** : une erreur s'est produite
-* **niters** 	   : (Integer) nombre d'itérations réalisées
+- xmin		   : (Array{Float,1}) une approximation de la solution du problème avec contraintes
+- fxmin 	   : (Float) ``f(x_{min})``
+- flag		   : (Integer) indicateur du déroulement de l'algorithme
+   - 0    : convergence
+   - 1    : nombre maximal d'itération atteint
+   - (-1) : une erreur s'est produite
+- niters 	   : (Integer) nombre d'itérations réalisées
 
 # Exemple d'appel
 ```julia
