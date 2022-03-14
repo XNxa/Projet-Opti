@@ -36,6 +36,8 @@ Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
    - 1    : nombre maximal d'itération atteint
    - (-1) : une erreur s'est produite
 - niters 	   : (Integer) nombre d'itérations réalisées
+- muk : (Float) valeur de mu_k à la sortie
+- lambdak : (Float) valeur de lambda_k à la sortie
 
 # Exemple d'appel
 ```julia
