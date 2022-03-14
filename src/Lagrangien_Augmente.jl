@@ -73,11 +73,14 @@ function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::
 		tho = options[6]
 	end
 
-    n = length(x0)
-    xmin = zeros(n)
+  n = length(x0)
+  xmin = zeros(n)
 	fxmin = 0
 	flag = 0
 	iter = 0
+  muk = mu0
+  lambdak = lambda0
+
 	
-	return xmin,fxmin,flag,iter
+	return xmin,fxmin,flag,iter, muk, lambdak
 end
