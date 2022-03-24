@@ -78,7 +78,7 @@ function tester_regions_de_confiance(afficher::Bool,Regions_De_Confiance::Functi
 		#	les tests avec le gradient conjugué tronqué   #
 		###################################################
 		# Un deuxième sous-ensemble de tests
-		@testset "avec GCT " begin
+		#= @testset "avec GCT " begin
 			# cas de test 1
 			x_min11, fmin11, flag11, nb_iters11= Regions_De_Confiance("gct",fct1,grad_fct1,hess_fct1,pts1.x011,options1)
 			if (afficher)
@@ -113,6 +113,6 @@ function tester_regions_de_confiance(afficher::Bool,Regions_De_Confiance::Functi
 				afficher_resultats("régions de confiance avec "*"gct","fonction 2","x023",x_min11,fmin23, flag23,sol_exacte_fct2,nb_iters23)
 			end
 			@test x_min23 ≈ sol_exacte_fct2 atol=tol_erreur
-		end
+		end =#
 	end
 end
