@@ -1,14 +1,14 @@
 
 @doc doc"""
-# Objet
+#### Objet
 Cette fonction implémente l'algorithme de Newton pour résoudre un problème d'optimisation sans contrainte
 
-# Syntaxe
+#### Syntaxe
 ```julia
 xk,f_min,flag,nb_iters = Algorithme_de_Newton(f,gradf,hessf,x0,option)
 ```
 
-# Entrées :
+#### Entrées :
    - f       : (Function) la fonction à minimiser
    - gradf   : (Function) le gradient de la fonction f
    - hessf   : (Function) la Hessienne de la fonction f
@@ -18,7 +18,7 @@ xk,f_min,flag,nb_iters = Algorithme_de_Newton(f,gradf,hessf,x0,option)
        - Tol_abs       : la tolérence absolue
        - Tol_rel       : la tolérence relative
 
-# Sorties:
+#### Sorties:
    - xmin    : (Array{Float,1}) une approximation de la solution du problème  : ``\min_{x \in \mathbb{R}^{n}} f(x)``
    - f_min   : (Float) ``f(x_{min})``
    - flag     : (Integer) indique le critère sur lequel le programme à arrêter
@@ -28,7 +28,7 @@ xk,f_min,flag,nb_iters = Algorithme_de_Newton(f,gradf,hessf,x0,option)
       - 3    : nombre maximal d'itération dépassé
    - nb_iters : (Integer) le nombre d'itérations faites par le programme
 
-# Exemple d'appel
+#### Exemple d'appel
 ```@example
 f(x)=100*(x[2]-x[1]^2)^2+(1-x[1])^2
 gradf(x)=[-400*x[1]*(x[2]-x[1]^2)-2*(1-x[1]) ; 200*(x[2]-x[1]^2)]

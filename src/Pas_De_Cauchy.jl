@@ -1,23 +1,23 @@
 @doc doc"""
 
-# Objet
+#### Objet
 Cette fonction calcule une solution approchée du problème
 ```math
 \min_{||s||< \delta_{k}} q_k(s) = s^{t}g + (1/2)s^{t}Hs
 ```
 par le calcul du pas de Cauchy
 
-# Syntaxe
+#### Syntaxe
 ```julia
 s1, e1 = Pas_De_Cauchy(gradient,Hessienne,delta)
 ```
 
-# Entrées
+#### Entrées
  - gradfk : (Array{Float,1}) le gradient de la fonction f appliqué au point ``x_k``
  - hessfk : (Array{Float,2}) la Hessienne de la fonction f appliqué au point ``x_k``
  - delta  : (Float) le rayon de la région de confiance
 
-# Sorties
+#### Sorties
  - s : (Array{Float,1}) une approximation de la  solution du sous-problème
  - e : (Integer) indice indiquant l'état de sortie:
         si g != 0
@@ -28,7 +28,7 @@ s1, e1 = Pas_De_Cauchy(gradient,Hessienne,delta)
         sinon
             e <- 0
 
-# Exemple d'appel
+#### Exemple d'appel
 ```julia
 g1 = [0; 0]
 H1 = [7 0 ; 0 2]

@@ -1,18 +1,18 @@
 @doc doc"""
 
-# Objet
+#### Objet
 
 Minimise une fonction de R^n à valeurs dans R en utilisant l'algorithme des régions de confiance. 
 
 La solution approchées des sous-problèmes quadratiques est calculé 
 par le pas de Cauchy ou le pas issu de l'algorithme du gradient conjugue tronqué
 
-# Syntaxe
+#### Syntaxe
 ```julia
 xk, nb_iters, f(xk), flag = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
 ```
 
-# Entrées :
+#### Entrées :
 
    - algo        : (String) string indicant la méthode à utiliser pour calculer le pas
         - "gct"   : pour l'algorithme du gradient conjugué tronqué
@@ -31,7 +31,7 @@ xk, nb_iters, f(xk), flag = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
      - Tol_abs       : la tolérence absolue
      - Tol_rel       : la tolérence relative
 
-# Sorties:
+#### Sorties:
 
    - xmin    : (Array{Float,1}) une approximation de la solution du problème : ``min_{x \in \mathbb{R}^{n}} f(x)``
    - fxmin   : (Float) ``f(x_{min})``
@@ -42,7 +42,7 @@ xk, nb_iters, f(xk), flag = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
       - 3    : nombre maximal d'itération dépassé
    - nb_iters : (Integer)le nombre d'iteration qu'à fait le programme
 
-# Exemple d'appel
+#### Exemple d'appel
 ```julia
 algo="gct"
 f(x)=100*(x[2]-x[1]^2)^2+(1-x[1])^2

@@ -1,15 +1,15 @@
 @doc doc"""
-# Objet
+#### Objet
 
 Résolution des problèmes de minimisation sous contraintes d'égalités par l'algorithme du lagrangien augmenté
 
-# Syntaxe
+#### Syntaxe
 ```julia
 Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
 			hess_contrainte,x0,options)
 ```
 
-# Entrées
+#### Entrées
   - algo 		   : (String) l'algorithme sans contraintes à utiliser:
     - "newton"  : pour l'algorithme de Newton
     - "cauchy"  : pour le pas de Cauchy
@@ -28,7 +28,7 @@ Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
     4. lambda0	   : la deuxième composante du point de départ du Lagrangien
     5. mu0,tho 	   : valeurs initiales des variables de l'algorithme
 
-# Sorties
+#### Sorties
 - xmin		   : (Array{Float,1}) une approximation de la solution du problème avec contraintes
 - fxmin 	   : (Float) ``f(x_{min})``
 - flag		   : (Integer) indicateur du déroulement de l'algorithme
@@ -39,7 +39,7 @@ Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
 - muk : (Float) valeur de mu_k à la sortie
 - lambdak : (Float) valeur de lambda_k à la sortie
 
-# Exemple d'appel
+#### Exemple d'appel
 ```julia
 using LinearAlgebra
 f(x)=100*(x[2]-x[1]^2)^2+(1-x[1])^2
@@ -54,7 +54,7 @@ hess_contrainte(x) = [2 0;0 2]
 output = Lagrangien_Augmente(algo,f,contrainte,gradf,hessf,grad_contrainte,hess_contrainte,x0,options)
 ```
 
-# Tolérances des algorithmes appelés
+#### Tolérances des algorithmes appelés
 
 Pour les tolérances définies dans les algorithmes appelés (Newton et régions de confiance), prendre les tolérances 
 par défaut définies dans ces algorithmes.
