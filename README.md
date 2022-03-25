@@ -6,8 +6,13 @@ Pour récupérer les sources, il faut cloner ce dépot git :
 git clone https://gitlab.irit.fr/toc/mathn7/optimisation-numerique/projet-optinum.git
 ```
 
-Le sujet du projet se trouve dans le fichier `src/projet-optinum.ipynb`. 
-Pour réaliser le projet vous aurez besoin de cette [documentation](doc-sujet.pdf) qui décrit les différents algorithmes à implémenter. 
+Les sujets liés au projet se trouvent dans les notebooks du répertoire `src`. Voici l'ordre des sujets :
+
+* Newton
+* Régions de confiance
+* Lagrangien augmenté
+
+Pour réaliser le projet vous aurez besoin de cette [documentation](doc-projet.pdf) qui décrit les différents algorithmes à implémenter. 
 
 **Attention**, seuls les fichiers dans le répertoire `src` sont à modifier !
 
