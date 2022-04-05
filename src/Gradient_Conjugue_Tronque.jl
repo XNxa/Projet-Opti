@@ -1,5 +1,5 @@
 @doc doc"""
-# Objet
+#### Objet
 Cette fonction calcule une solution approchée du problème
 
 ```math
@@ -8,12 +8,12 @@ Cette fonction calcule une solution approchée du problème
 
 par l'algorithme du gradient conjugué tronqué
 
-# Syntaxe
+#### Syntaxe
 ```julia
 sk = Gradient_Conjugue_Tronque(fk,gradfk,hessfk,option)
 ```
 
-# Entrées :   
+#### Entrées :   
    - gradfk           : (Array{Float,1}) le gradient de la fonction f appliqué au point xk
    - hessfk           : (Array{Float,2}) la Hessienne de la fonction f appliqué au point xk
    - options          : (Array{Float,1})
@@ -22,10 +22,10 @@ sk = Gradient_Conjugue_Tronque(fk,gradfk,hessfk,option)
       - tol      : la tolérance pour la condition d'arrêt sur le gradient
 
 
-# Sorties:
+#### Sorties:
    - s : (Array{Float,1}) le pas s qui approche la solution du problème : ``min_{||s||< \delta_{k}} q(s)``
 
-# Exemple d'appel:
+#### Exemple d'appel:
 ```julia
 gradf(x)=[-400*x[1]*(x[2]-x[1]^2)-2*(1-x[1]) ; 200*(x[2]-x[1]^2)]
 hessf(x)=[-400*(x[2]-3*x[1]^2)+2  -400*x[1];-400*x[1]  200]
