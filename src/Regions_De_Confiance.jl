@@ -1,45 +1,48 @@
 @doc doc"""
-Minimise une fonction en utilisant l'algorithme des régions de confiance avec
-    - le pas de Cauchy
-ou
-    - le pas issu de l'algorithme du gradient conjugue tronqué
 
-# Syntaxe
+#### Objet
+
+Minimise une fonction de R^n à valeurs dans R en utilisant l'algorithme des régions de confiance. 
+
+La solution approchées des sous-problèmes quadratiques est calculé 
+par le pas de Cauchy ou le pas issu de l'algorithme du gradient conjugue tronqué
+
+#### Syntaxe
 ```julia
 xk, nb_iters, f(xk), flag = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
 ```
 
-# Entrées :
+#### Entrées :
 
-   * **algo**        : (String) string indicant la méthode à utiliser pour calculer le pas
-        - **"gct"**   : pour l'algorithme du gradient conjugué tronqué
-        - **"cauchy"**: pour le pas de Cauchy
-   * **f**           : (Function) la fonction à minimiser
-   * **gradf**       : (Function) le gradient de la fonction f
-   * **hessf**       : (Function) la hessiene de la fonction à minimiser
-   * **x0**          : (Array{Float,1}) point de départ
-   * **options**     : (Array{Float,1})
-     * **deltaMax**      : utile pour les m-à-j de la région de confiance
+   - algo        : (String) string indicant la méthode à utiliser pour calculer le pas
+        - "gct"   : pour l'algorithme du gradient conjugué tronqué
+        - "cauchy": pour le pas de Cauchy
+   - f           : (Function) la fonction à minimiser
+   - gradf       : (Function) le gradient de la fonction f
+   - hessf       : (Function) la hessiene de la fonction à minimiser
+   - x0          : (Array{Float,1}) point de départ
+   - options     : (Array{Float,1})
+     - deltaMax      : utile pour les m-à-j de la région de confiance
                       ``R_{k}=\left\{x_{k}+s ;\|s\| \leq \Delta_{k}\right\}``
-     * **gamma1,gamma2** : ``0 < \gamma_{1} < 1 < \gamma_{2}`` pour les m-à-j de ``R_{k}``
-     * **eta1,eta2**     : ``0 < \eta_{1} < \eta_{2} < 1`` pour les m-à-j de ``R_{k}``
-     * **delta0**        : le rayon de départ de la région de confiance
-     * **max_iter**      : le nombre maximale d'iterations
-     * **Tol_abs**       : la tolérence absolue
-     * **Tol_rel**       : la tolérence relative
+     - gamma1,gamma2 : ``0 < \gamma_{1} < 1 < \gamma_{2}`` pour les m-à-j de ``R_{k}``
+     - eta1,eta2     : ``0 < \eta_{1} < \eta_{2} < 1`` pour les m-à-j de ``R_{k}``
+     - delta0        : le rayon de départ de la région de confiance
+     - max_iter      : le nombre maximale d'iterations
+     - Tol_abs       : la tolérence absolue
+     - Tol_rel       : la tolérence relative
 
-# Sorties:
+#### Sorties:
 
-   * **xmin**    : (Array{Float,1}) une approximation de la solution du problème : ``min_{x \in \mathbb{R}^{n}} f(x)``
-   * **fxmin**   : (Float) ``f(x_{min})``
-   * **flag**    : (Integer) un entier indiquant le critère sur lequel le programme à arrêter
-      - **0**    : Convergence
-      - **1**    : stagnation du ``x``
-      - **2**    : stagnation du ``f``
-      - **3**    : nombre maximal d'itération dépassé
-   * **nb_iters** : (Integer)le nombre d'iteration qu'à fait le programme
+   - xmin    : (Array{Float,1}) une approximation de la solution du problème : ``min_{x \in \mathbb{R}^{n}} f(x)``
+   - fxmin   : (Float) ``f(x_{min})``
+   - flag    : (Integer) un entier indiquant le critère sur lequel le programme à arrêter
+      - 0    : Convergence
+      - 1    : stagnation du ``x``
+      - 2    : stagnation du ``f``
+      - 3    : nombre maximal d'itération dépassé
+   - nb_iters : (Integer)le nombre d'iteration qu'à fait le programme
 
-# Exemple d'appel
+#### Exemple d'appel
 ```julia
 algo="gct"
 f(x)=100*(x[2]-x[1]^2)^2+(1-x[1])^2

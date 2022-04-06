@@ -1,25 +1,31 @@
 @doc doc"""
-Minimise le problème : ``min_{||s||< \delta_{k}} q_k(s) = s^{t}g + (1/2)s^{t}Hs``
-                        pour la ``k^{ème}`` itération de l'algorithme des régions de confiance
+#### Objet
+Cette fonction calcule une solution approchée du problème
 
-# Syntaxe
+```math
+\min_{||s||< \delta_{k}} q_k(s) = s^{t}g + (1/2)s^{t}Hs
+```
+
+par l'algorithme du gradient conjugué tronqué
+
+#### Syntaxe
 ```julia
 sk = Gradient_Conjugue_Tronque(fk,gradfk,hessfk,option)
 ```
 
-# Entrées :   
-   * **gradfk**           : (Array{Float,1}) le gradient de la fonction f appliqué au point xk
-   * **hessfk**           : (Array{Float,2}) la Hessienne de la fonction f appliqué au point xk
-   * **options**          : (Array{Float,1})
-      - **delta**    : le rayon de la région de confiance
-      - **max_iter** : le nombre maximal d'iterations
-      - **tol**      : la tolérance pour la condition d'arrêt sur le gradient
+#### Entrées :   
+   - gradfk           : (Array{Float,1}) le gradient de la fonction f appliqué au point xk
+   - hessfk           : (Array{Float,2}) la Hessienne de la fonction f appliqué au point xk
+   - options          : (Array{Float,1})
+      - delta    : le rayon de la région de confiance
+      - max_iter : le nombre maximal d'iterations
+      - tol      : la tolérance pour la condition d'arrêt sur le gradient
 
 
-# Sorties:
-   * **s** : (Array{Float,1}) le pas s qui approche la solution du problème : ``min_{||s||< \delta_{k}} q(s)``
+#### Sorties:
+   - s : (Array{Float,1}) le pas s qui approche la solution du problème : ``min_{||s||< \delta_{k}} q(s)``
 
-# Exemple d'appel:
+#### Exemple d'appel:
 ```julia
 gradf(x)=[-400*x[1]*(x[2]-x[1]^2)-2*(1-x[1]) ; 200*(x[2]-x[1]^2)]
 hessf(x)=[-400*(x[2]-3*x[1]^2)+2  -400*x[1];-400*x[1]  200]
