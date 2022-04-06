@@ -36,8 +36,8 @@ Lagrangien_Augmente(algo,fonc,contrainte,gradfonc,hessfonc,grad_contrainte,
    - 1    : nombre maximal d'itération atteint
    - (-1) : une erreur s'est produite
 - niters 	   : (Integer) nombre d'itérations réalisées
-- muk : (Float) valeur de mu_k à la sortie
-- lambdak : (Float) valeur de lambda_k à la sortie
+- muks : (Array{Float64}) tableau des valeurs prises par mu_k au cours de l'exécution
+- lambdaks : (Array{Float64}) tableau des vleurs prises par lambda_k au cours de l'exécution
 
 #### Exemple d'appel
 ```julia
@@ -85,8 +85,10 @@ function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::
 	flag = 0
 	iter = 0
   muk = mu0
+  muks = [mu0]
   lambdak = lambda0
+  lambdaks = [lambda0]
 
 	
-	return xmin,fxmin,flag,iter, muk, lambdak
+	return xmin,fxmin,flag,iter, muks, lambdaks
 end
