@@ -17,6 +17,7 @@ xmin,fmin,flag,nb_iters = Algorithme_de_Newton(f,gradf,hessf,x0,option)
        - max_iter      : le nombre maximal d'iterations
        - Tol_abs       : la tolérence absolue
        - Tol_rel       : la tolérence relative
+       - epsilon       : epsilon pour les tests de stagnation
 
 #### Sorties:
    - xmin    : (Array{Float,1}) une approximation de la solution du problème  : ``\min_{x \in \mathbb{R}^{n}} f(x)``
@@ -45,10 +46,12 @@ function Algorithme_De_Newton(f::Function,gradf::Function,hessf::Function,x0,opt
         max_iter = 100
         Tol_abs = sqrt(eps())
         Tol_rel = 1e-15
+        epsilon = 1.e-2
     else
         max_iter = options[1]
         Tol_abs = options[2]
         Tol_rel = options[3]
+        epsilon = options[4]
     end
         xmin = x0
         fmin = f(x0)

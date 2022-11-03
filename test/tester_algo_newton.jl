@@ -12,7 +12,8 @@ function tester_algo_newton(afficher::Bool,Algorithme_De_Newton::Function)
 	max_iter = 100
     Tol_abs = sqrt(eps())
     Tol_rel = 1e-15
-	options = [max_iter, Tol_abs, Tol_rel]
+    epsilon = 1.
+	options = [max_iter, Tol_abs, Tol_rel, epsilon]
 	@testset "L'algo de Newton" begin
 		@testset "Cas test 1 x0 = solution" begin
 		    # point de départ x011

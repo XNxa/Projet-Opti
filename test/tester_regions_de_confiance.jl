@@ -24,11 +24,12 @@ function tester_regions_de_confiance(afficher::Bool,Regions_De_Confiance::Functi
 	deltaMax = 10
 	Tol_abs = sqrt(eps())
 	Tol_rel = 1e-8
+    epsilon = 1
 	maxits = 5000
 	delta0_1 = 2
 	delta0_2 = 2
-	options1 =[deltaMax,gamma1,gamma2,eta1,eta2,delta0_1,maxits,Tol_abs,Tol_rel]
-	options2 =[deltaMax,gamma1,gamma2,eta1,eta2,delta0_2,maxits,Tol_abs,Tol_rel]
+	options1 =[deltaMax,gamma1,gamma2,eta1,eta2,delta0_1,maxits,Tol_abs,Tol_rel,epsilon]
+	options2 =[deltaMax,gamma1,gamma2,eta1,eta2,delta0_2,maxits,Tol_abs,Tol_rel,epsilon]
 
 	# l'ensemble de tests
 	@testset "La méthode des RC " begin
@@ -62,7 +63,7 @@ function tester_regions_de_confiance(afficher::Bool,Regions_De_Confiance::Functi
 			end
 			@test x_min21 ≈ sol_exacte_fct2 atol=tol_erreur
 			@test flag21 == 2
-			@test nb_iters21 == 4144
+			@test nb_iters21 == 3988
 
 			# cas de test 4
 			x_min22, fmin22, flag22, nb_iters22 = Regions_De_Confiance("cauchy",fct2,grad_fct2,hess_fct2,pts1.x022,options2)
@@ -81,7 +82,7 @@ function tester_regions_de_confiance(afficher::Bool,Regions_De_Confiance::Functi
 			end
 			@test x_min23 ≈ sol_exacte_fct2 atol=tol_erreur
 			@test flag23 == 2
-			@test nb_iters23 == 3305
+			@test nb_iters23 == 3198
 		end
 
 		###################################################
@@ -104,7 +105,7 @@ function tester_regions_de_confiance(afficher::Bool,Regions_De_Confiance::Functi
 				afficher_resultats("régions de confiance avec "*"gct","fonction 1","x012",x_min12,fmin12, flag12,sol_exacte_fct1,nb_iters12)
 			end
 			@test x_min12 ≈ sol_exacte_fct1 atol=tol_erreur
-			@test flag12 = 0
+			@test flag12 == 0
 			@test nb_iters12 == 3
 
 			# cas de test 3
@@ -134,6 +135,6 @@ function tester_regions_de_confiance(afficher::Bool,Regions_De_Confiance::Functi
 			@test x_min23 ≈ sol_exacte_fct2 atol=tol_erreur
 			@test flag23 == 0
 			@test nb_iters23 == 19
-		end =#
+        end =#
 	end
 end

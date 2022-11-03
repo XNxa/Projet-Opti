@@ -61,21 +61,21 @@ Pour les tolérances définies dans les algorithmes appelés (Newton et régions
 function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::Function,
         hessfonc::Function,grad_contrainte::Function,hess_contrainte::Function,x0,options)
 
-        if options == []
-                tol_rel = 1e-5
-    tol_abs = 1e-7
-                itermax = 1000
-                lambda0 = 2
-                mu0 = 100
-                tho = 2
-        else
-                tol_rel = options[2]
-    tol_abs = options[3]
-                itermax = options[4]
-                lambda0 = options[5]
-                mu0 = options[6]
-                tho = options[7]
-        end
+    	if options == []
+		epsilon = 1e-2
+		tol = 1e-5
+		itermax = 1000
+		lambda0 = 2
+		mu0 = 100
+		tho = 2
+	else
+		epsilon = options[1]
+		tol = options[2]
+		itermax = options[3]
+		lambda0 = options[4]
+		mu0 = options[5]
+		tho = options[6]
+	end
 
   n = length(x0)
   xmin = zeros(n)

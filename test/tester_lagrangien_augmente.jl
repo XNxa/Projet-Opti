@@ -21,7 +21,7 @@ function tester_lagrangien_augmente(afficher::Bool,Lagrangien_Augmente::Function
 	lambda0 = 2
 	mu0 = 10
 	tho = 2
-	epsilon = 1e-8
+	epsilon = 1.
 	tol = 1e-5
 	max_iters = 1000
 	options = [epsilon, tol, max_iters, lambda0, mu0, tho]
