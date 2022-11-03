@@ -16,3 +16,7 @@ Pour réaliser le projet vous aurez besoin de cette [documentation](doc-projet.p
 
 **Attention**, seuls les fichiers dans le répertoire `src` sont à modifier !
 
+## Utilisation de `julia`dans les salles d'enseignement
+* Pour lancer `julia` sur les machines enseignements il faut dans votre fichier `.bashrc` initialiser la variable d'environnement de `julia` `JULIA_`
+* Pour pouvoir utiliser les notebooks, il faudra alors taper la commande ` jupyter-notebook`
+
