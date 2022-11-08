@@ -12,7 +12,8 @@ function tester_algo_newton(afficher::Bool,Algorithme_De_Newton::Function)
 	max_iter = 100
     Tol_abs = sqrt(eps())
     Tol_rel = 1e-15
-	options = [max_iter, Tol_abs, Tol_rel]
+    epsilon = 1.
+	options = [max_iter, Tol_abs, Tol_rel, epsilon]
 	@testset "L'algo de Newton" begin
 		@testset "Cas test 1 x0 = solution" begin
 		    # point de départ x011
@@ -26,6 +27,9 @@ function tester_algo_newton(afficher::Bool,Algorithme_De_Newton::Function)
 			@testset "itération" begin
 		    @test nb_iters == 0
 		    end
+			@testset "flag" begin
+			@test flag == 0
+			end
 		end
 		@testset "Cas test 1 x0 = x011" begin
 		    #point de départ x011
@@ -39,6 +43,9 @@ function tester_algo_newton(afficher::Bool,Algorithme_De_Newton::Function)
 			@testset "itération" begin
 		    @test nb_iters == 1
 		    end
+			@testset "flag" begin
+			@test flag == 0
+			end
 		end
 		@testset "Cas test 1 x0 = x012" begin
 		    x_min, fx_min, flag, nb_iters = Algorithme_De_Newton(fct1,grad_fct1,hess_fct1,pts1.x012,options)
@@ -51,6 +58,9 @@ function tester_algo_newton(afficher::Bool,Algorithme_De_Newton::Function)
 			@testset "itération" begin
 				@test nb_iters == 1
             end
+			@testset "flag" begin
+			@test flag == 0
+			end
 		end
 		@testset "Cas test 2 x0 = solution" begin
 			x_min, fx_min, flag, nb_iters = Algorithme_De_Newton(fct1,grad_fct1,hess_fct1,sol_exacte_fct1,options)
@@ -62,6 +72,9 @@ function tester_algo_newton(afficher::Bool,Algorithme_De_Newton::Function)
 			end
 			@testset "itération" begin
 			@test nb_iters == 0
+			end
+			@testset "flag" begin
+			@test flag == 0
 			end
 		end
 		@testset "Cas test 2 x0 = x021" begin
@@ -75,6 +88,9 @@ function tester_algo_newton(afficher::Bool,Algorithme_De_Newton::Function)
 			@testset "itération" begin
 				@test nb_iters == 6
             end
+			@testset "flag" begin
+			@test flag == 0
+			end
 		end
 		@testset "Cas test 2 x0 = x022" begin
 		    x_min, fx_min, flag, nb_iters = Algorithme_De_Newton(fct2,grad_fct2,hess_fct2,pts1.x022,options)
@@ -87,6 +103,9 @@ function tester_algo_newton(afficher::Bool,Algorithme_De_Newton::Function)
 			@testset "itération" begin
 				@test nb_iters == 5
             end
+			@testset "flag" begin
+			@test flag == 0
+			end
 		end
 
 		@testset "Cas test 2 x0 = x023" begin
@@ -99,6 +118,12 @@ function tester_algo_newton(afficher::Bool,Algorithme_De_Newton::Function)
 		    @testset "solution" begin
 				@test x_min ≈ sol  atol = tol_erreur
             end
+			@testset "flag" begin
+			@test flag == 3
+			end
+			@testset "itération" begin
+			@test nb_iters == 1
+			end
 		    @testset "exception" begin
 				options[1] = 100
 			    @test_throws SingularException x_min, fx_min, flag, nb_iters = Algorithme_De_Newton(fct2,grad_fct2,hess_fct2,pts1.x023,options)

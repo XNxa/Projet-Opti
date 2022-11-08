@@ -30,6 +30,7 @@ xmin, fxmin, flag, nb_iters = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
      - max_iter       : le nombre maximale d'iterations
      - Tol_abs        : la tolérence absolue
      - Tol_rel        : la tolérence relative
+     - epsilon       : epsilon pour les tests de stagnation
 
 #### Sorties:
 
@@ -66,6 +67,7 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         max_iter = 1000
         Tol_abs = sqrt(eps())
         Tol_rel = 1e-15
+        epsilon = 1.e-2
     else
         deltaMax = options[1]
         gamma1 = options[2]
@@ -76,6 +78,7 @@ function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x
         max_iter = options[7]
         Tol_abs = options[8]
         Tol_rel = options[9]
+        epsilon = options[10]
     end
 
     n = length(x0)
