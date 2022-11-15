@@ -20,14 +20,14 @@ Pour réaliser le projet vous aurez besoin de cette [documentation](doc-projet.p
 
 ### Via Jupyter notebook
 
-La première étape consiste à ajouter dans le path, le chemin contenant l'exécutable `Julia`. Pour cela, ajouter dans le fichier `~/.bashrc` la ligne
+La première étape consiste à ajouter dans le path, le chemin contenant l'exécutable Julia. Pour cela, ajouter dans le fichier `~/.bashrc` la ligne suivante.
 
 ```bash
 export PATH="/home/ocots/Public/bin":$PATH
 ```
 
-Ensuite, ouvrez un terminal et exécuter la commande `julia`. Cela doit ouvrir une version `1.8.2` de `Julia`. Pour utiliser `Jupyter notebook` 
-il faut au préalable installer le noyau `Julia`.  Pour cela, exécuter les commandes
+Ensuite, ouvrez un terminal et exécuter la commande `julia`. Cela doit ouvrir une version `1.8.2` de Julia. Pour utiliser `Jupyter notebook` 
+il faut au préalable installer le noyau Julia.  Pour cela, exécuter les commandes :
 
 ```julia
 using Pkg
@@ -35,7 +35,7 @@ Pkg.add("IJulia")
 Pkg.build("IJulia")
 ```
 
-Maintenant, il est possible d'ouvrir `Jupyter` pour exécuter des notebooks `Julia`. Pour cela, toujours dans `Julia` faites
+Maintenant, il est possible d'ouvrir Jupyter pour exécuter des notebooks Julia. Pour cela, toujours dans `Julia` faites :
 
 ```julia
 notebook()
@@ -43,9 +43,24 @@ notebook()
 
 ### Via VS Code
 
-* On utilisera `VS Code`.
-* Installer les extensions `julia` et `jupyter` dans `VS Code`.
-* Ouvrir les préférences `File -> Preferences -> Settings` et faire la recherche `julia path`. Dans l'option `Julia: Executable Path`, écrire `/mnt/n7fs/cimi/julia-1.8.2/bin/julia`. 
-* Fermer et réouvrir `VS Code`.
-* Ouvrir le dossier du projet et exécuter (SHIFT + ENTER ou CTRL + ENTER) la première cellule de code du fichier `src/algo_newton.ipynb`. Vous devez alors sélectionner le code `Julia` qui sera utilisé, choisissez la version `1.8.2`.
+Si vous désirez utiliser VS Code, il vous faudra installer certains packages sur votre compte personnel ce qui peut vous faire dépasser votre quota.
+En principe, pour ce projet, il y a très peu de packages supplémentaires à installer.
+
+1. Pour utiliser des notebooks Julia dans VS Code, il faut tout d'abord installer les extensions [Julia](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia) et [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) dans `VS Code`.
+
+2. Il faut ensuite donner le chemin de l'exécutable Julia. Pour cela, ouvrir les préférences `File -> Preferences -> Settings` et faire la recherche `julia path`. Dans l'option `Julia: Executable Path`, écrire `/home/ocots/Public/julia-1.8.2/bin/julia`. 
+
+3. Fermer et réouvrir `VS Code`.
+
+4. Ouvrir le dossier du projet et exécuter (SHIFT + ENTER ou CTRL + ENTER) la première cellule de code du fichier `src/algo_newton.ipynb`. Vous devez alors sélectionner le code `Julia` qui sera utilisé, choisissez la version `1.8.2`.
+
+Attention, si certains `using` ne fonctionnent pas, c'est parce que vous devez ajouter des packages. Il faudra alors faire les commandes suivantes dans 
+n'importe quelle cellule du notebook, on appelle `pkg-name`, le nom du package à installer.
+
+```julia
+using Pkg
+Pkg.add("pkg-name")
+```
+
+
 
