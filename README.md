@@ -16,7 +16,32 @@ Pour réaliser le projet vous aurez besoin de cette [documentation](doc-projet.p
 
 **Attention**, seuls les fichiers dans le répertoire `src` sont à modifier !
 
-## Utilisation de `julia`dans les salles d'enseignement
+## Utilisation de `julia` dans les salles d'enseignement
+
+### Via Jupyter notebook
+
+La première étape consiste à ajouter dans le path, le chemin contenant l'exécutable `Julia`. Pour cela, ajouter dans le fichier `~/.bashrc` la ligne
+
+```bash
+export PATH="/home/ocots/Public/bin":$PATH
+```
+
+Ensuite, ouvrez un terminal et exécuter la commande `julia`. Cela doit ouvrir une version `1.8.2` de `Julia`. Pour utiliser `Jupyter notebook` 
+il faut au préalable installer le noyau `Julia`.  Pour cela, exécuter les commandes
+
+```julia
+using Pkg
+Pkg.add("IJulia")
+Pkg.build("IJulia")
+```
+
+Maintenant, il est possible d'ouvrir `Jupyter` pour exécuter des notebooks `Julia`. Pour cela, toujours dans `Julia` faites
+
+```julia
+notebook()
+```
+
+### Via VS Code
 
 * On utilisera `VS Code`.
 * Installer les extensions `julia` et `jupyter` dans `VS Code`.
