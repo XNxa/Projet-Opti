@@ -31,13 +31,13 @@ il faut au préalable installer le noyau Julia.  Pour cela, exécuter les comman
 
 ```julia
 using Pkg
-Pkg.add("IJulia")
 Pkg.build("IJulia")
 ```
 
 Maintenant, il est possible d'ouvrir Jupyter pour exécuter des notebooks Julia. Pour cela, toujours dans `Julia` faites :
 
 ```julia
+using IJulia
 notebook()
 ```
 
@@ -48,7 +48,11 @@ En principe, pour ce projet, il y a très peu de packages supplémentaires à in
 
 1. Pour utiliser des notebooks Julia dans VS Code, il faut tout d'abord installer les extensions [Julia](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia) et [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) dans `VS Code`.
 
-2. Il faut ensuite donner le chemin de l'exécutable Julia. Pour cela, ouvrir les préférences `File -> Preferences -> Settings` et faire la recherche `julia path`. Dans l'option `Julia: Executable Path`, écrire `/home/ocots/Public/julia-1.8.2/bin/julia`. 
+2. Il faut ensuite donner le chemin de l'exécutable Julia. Pour cela, ouvrir les préférences `File -> Preferences -> Settings` et faire la recherche `julia path`. Dans l'option `Julia: Executable Path`, écrire 
+
+```bash
+/home/ocots/Public/bin/julia_vs_code
+``` 
 
 3. Fermer et réouvrir `VS Code`.
 
