@@ -70,7 +70,7 @@ Pkg.add("pkg-name")
 
 1. Installer [Julia](https://julialang.org/downloads/)
 2. Ouvrir Julia
-3. Installation de noyau julia dans Jupyter
+3. Installer le noyau julia dans Jupyter :
 
 Pour utiliser `Jupyter notebook` il faut au préalable installer le noyau Julia. Pour cela, exécuter les commandes :
 
