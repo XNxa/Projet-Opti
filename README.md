@@ -23,7 +23,7 @@ Pour réaliser le projet vous aurez besoin de cette [documentation](doc-projet.p
 La première étape consiste à ajouter dans le path, le chemin contenant l'exécutable Julia. Pour cela, ajouter dans le fichier `~/.bashrc` la ligne suivante.
 
 ```bash
-export PATH="/home/ocots/Public/bin":$PATH
+export PATH="/mnt/n7fs/ens/tp_cots/bin":$PATH
 ```
 
 Ensuite, ouvrez un terminal et exécuter la commande `julia`. Cela doit ouvrir une version `1.8.2` de Julia. Pour utiliser `Jupyter notebook` 
@@ -51,7 +51,7 @@ En principe, pour ce projet, il y a très peu de packages supplémentaires à in
 2. Il faut ensuite donner le chemin de l'exécutable Julia. Pour cela, ouvrir les préférences `File -> Preferences -> Settings` et faire la recherche `julia path`. Dans l'option `Julia: Executable Path`, écrire 
 
 ```bash
-/home/ocots/Public/bin/julia_vs_code
+/mnt/n7fs/ens/tp_cots/bin/julia_vs_code
 ``` 
 
 3. Fermer et réouvrir `VS Code`.
