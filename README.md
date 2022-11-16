@@ -66,5 +66,26 @@ using Pkg
 Pkg.add("pkg-name")
 ```
 
+## Installation de `julia` sur une machine personnelle
 
+1. Installer [Julia](https://julialang.org/downloads/)
+2. Ouvrir Julia
+3. Installation de noyau julia dans Jupyter
 
+Pour utiliser `Jupyter notebook` il faut au préalable installer le noyau Julia. Pour cela, exécuter les commandes :
+
+```julia
+using Pkg
+Pkg.add("IJulia")
+Pkg.build("IJulia")
+```
+
+Maintenant, il est possible d'ouvrir Jupyter pour exécuter des notebooks Julia. 
+Pour cela, toujours dans `Julia` faites :
+
+```julia
+using IJulia
+notebook()
+```
+
+Il vous sera peut-être demandé d'installer Jupyter. Suivez alors les instructions.
