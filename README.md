@@ -72,9 +72,9 @@ Pkg.add("pkg-name")
 
 1. Installer [Julia](https://julialang.org/downloads/)
 2. Ouvrir Julia
-3. Installer le noyau julia dans Jupyter :
+3. Installer le noyau julia dans Jupyter (ou VS Code) :
 
-Pour utiliser `Jupyter notebook` il faut au préalable installer le noyau Julia. Pour cela, exécuter les commandes :
+Pour utiliser les `notebooks` il faut au préalable installer le noyau Julia. Pour cela, exécuter les commandes :
 
 ```julia
 using Pkg
@@ -82,8 +82,10 @@ Pkg.add("IJulia")
 Pkg.build("IJulia")
 ```
 
-Maintenant, il est possible d'ouvrir Jupyter pour exécuter des notebooks Julia. 
-Pour cela, toujours dans `Julia` faites :
+Si vous désirez utiliser VS Code, vous pouvez alors exécuter des notebooks dans VS Code sans modifier le `Julia: Executable Path`
+des paramètres. Il vous faudra tout de même installer les extensions [Julia](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia) et [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) dans `VS Code`.
+
+Pour ouvrir Jupyter et y exécuter des notebooks Julia, faites :
 
 ```julia
 using IJulia
