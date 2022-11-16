@@ -41,6 +41,8 @@ using IJulia
 notebook()
 ```
 
+**Remarque.** Si vous désirez installer un package, vous devez exécuter Julia en mode "local" (c'est spécifique N7), c-a-d lancer la commande `julia -local`. Ajouter votre package puis vous pouvez relancer Julia normalement.
+
 ### Via VS Code
 
 Si vous désirez utiliser VS Code, il vous faudra installer certains packages sur votre compte personnel ce qui peut vous faire dépasser votre quota.
