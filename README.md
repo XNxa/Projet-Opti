@@ -1,10 +1,14 @@
 # Projet d'optimisation numérique
 
+## Récupérer les sources
+
 Pour récupérer les sources, il faut cloner ce dépot git : 
 
 ```bash
 git clone https://gitlab.irit.fr/toc/mathn7/optimisation-numerique/projet-optinum.git
 ```
+
+## Organisation des sources
 
 Les sujets liés au projet se trouvent dans les notebooks du répertoire `src`. Voici l'ordre des sujets :
 
@@ -14,82 +18,7 @@ Les sujets liés au projet se trouvent dans les notebooks du répertoire `src`. 
 
 Pour réaliser le projet vous aurez besoin de cette [documentation](doc-projet.pdf) qui décrit les différents algorithmes à implémenter. 
 
-**Attention**, seuls les fichiers dans le répertoire `src` sont à modifier !
+## Installation de Julia
 
-## Utilisation de `julia` dans les salles d'enseignement
-
-### Via Jupyter notebook
-
-La première étape consiste à ajouter dans le path, le chemin contenant l'exécutable Julia. Pour cela, ajouter dans le fichier `~/.bashrc` la ligne suivante.
-
-```bash
-export PATH="/mnt/n7fs/ens/tp_cots/bin":$PATH
-```
-
-Ensuite, ouvrez un terminal et exécuter la commande `julia`. Cela doit ouvrir une version `1.8.2` de Julia. Pour utiliser `Jupyter notebook` 
-il faut au préalable installer le noyau Julia.  Pour cela, exécuter les commandes :
-
-```julia
-using Pkg
-Pkg.build("IJulia")
-```
-
-Maintenant, il est possible d'ouvrir Jupyter pour exécuter des notebooks Julia. Pour cela, toujours dans `Julia` faites :
-
-```julia
-using IJulia
-notebook()
-```
-
-**Remarque.** Si vous désirez installer un package, vous devez exécuter Julia en mode "local" (c'est spécifique N7), c-a-d lancer la commande `julia -local`. Ajouter votre package puis vous pouvez relancer Julia normalement.
-
-### Via VS Code
-
-Si vous désirez utiliser VS Code, il vous faudra installer certains packages sur votre compte personnel ce qui peut vous faire dépasser votre quota.
-En principe, pour ce projet, il y a très peu de packages supplémentaires à installer.
-
-1. Pour utiliser des notebooks Julia dans VS Code, il faut tout d'abord installer les extensions [Julia](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia) et [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) dans `VS Code`.
-
-2. Il faut ensuite donner le chemin de l'exécutable Julia. Pour cela, ouvrir les préférences `File -> Preferences -> Settings` et faire la recherche `julia path`. Dans l'option `Julia: Executable Path`, écrire 
-
-```bash
-/mnt/n7fs/ens/tp_cots/bin/julia_vs_code
-``` 
-
-3. Fermer et réouvrir `VS Code`.
-
-4. Ouvrir le dossier du projet et exécuter (SHIFT + ENTER ou CTRL + ENTER) la première cellule de code du fichier `src/algo_newton.ipynb`. Vous devez alors sélectionner le code `Julia` qui sera utilisé, choisissez la version `1.8.2`.
-
-Attention, si certains `using` ne fonctionnent pas, c'est parce que vous devez ajouter des packages. Il faudra alors faire les commandes suivantes dans 
-n'importe quelle cellule du notebook, on appelle `pkg-name`, le nom du package à installer.
-
-```julia
-using Pkg
-Pkg.add("pkg-name")
-```
-
-## Installation de `julia` sur une machine personnelle
-
-1. Installer [Julia](https://julialang.org/downloads/)
-2. Ouvrir Julia
-3. Installer le noyau julia dans Jupyter (ou VS Code) :
-
-Pour utiliser les `notebooks` il faut au préalable installer le noyau Julia. Pour cela, exécuter les commandes :
-
-```julia
-using Pkg
-Pkg.add("IJulia")
-Pkg.build("IJulia")
-```
-
-Si vous désirez utiliser VS Code, vous pouvez alors exécuter des notebooks dans VS Code sans modifier le `Julia: Executable Path`
-des paramètres. Il vous faudra tout de même installer les extensions [Julia](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia) et [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) dans `VS Code`.
-
-Pour ouvrir Jupyter et y exécuter des notebooks Julia, faites :
-
-```julia
-using IJulia
-notebook()
-```
-
-Il vous sera peut-être demandé d'installer Jupyter. Suivez alors les instructions.
+Si vous n'avez pas encore installer Julia sur votre compte N7 ou sur votre machine personnelle, suivez les indications :
+[Utilisation de Julia à l'N7](https://gitlab.irit.fr/toc/mathn7/wiki/-/wikis/Utilisation-de-Julia-à-l'N7).
