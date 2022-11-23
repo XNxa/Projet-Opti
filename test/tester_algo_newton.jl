@@ -5,8 +5,8 @@ Tester l'algorithme de Newton local
    * afficher : (Bool) affichage ou non des résultats de chaque test
 
 # Les cas de test (dans l'ordre)
-   * fct 1 : x011,x012
-   * fct 2 : x021,x022
+   * fct 1 : x011, x012
+   * fct 2 : x021, x022, x023
 """
 function tester_algo_newton(afficher::Bool,Algorithme_De_Newton::Function)
 	max_iter = 100
@@ -113,7 +113,7 @@ function tester_algo_newton(afficher::Bool,Algorithme_De_Newton::Function)
 			sol = [-4.99999958629818e9, 8.673617379884035e-19]
 		    x_min, fx_min, flag, nb_iters = Algorithme_De_Newton(fct2,grad_fct2,hess_fct2,pts1.x023,options)
 		    if (afficher)
-		    	afficher_resultats("algorithme de Newton ","fct2","x022",x_min,fx_min,flag,sol_exacte_fct2,nb_iters)
+		    	afficher_resultats("algorithme de Newton ","fct2","x023",x_min,fx_min,flag,sol_exacte_fct2,nb_iters)
 		    end
 		    @testset "solution" begin
 				@test x_min ≈ sol  atol = tol_erreur
