@@ -22,3 +22,7 @@ Pour réaliser le projet vous aurez besoin de cette [documentation](doc-projet.p
 
 Si vous n'avez pas encore installer Julia sur votre compte N7 ou sur votre machine personnelle, suivez les indications :
 [Utilisation de Julia à l'N7](https://gitlab.irit.fr/toc/mathn7/wiki/-/wikis/Utilisation-de-Julia-à-l'N7).
+
+## Illustration de la méthode de Newton
+
+![Newton](newton.gif)
