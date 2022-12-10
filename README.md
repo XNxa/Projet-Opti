@@ -26,5 +26,5 @@ Si vous n'avez pas encore installer Julia sur votre compte N7 ou sur votre machi
 ## Illustration de la méthode de Newton
 
 <table align="center"><tr><td align="center" width="9999">
-<img src="newton.gif" align="center" width="100%" alt="Newton">
+<img src="newton.gif" align="center" width="60%" alt="Newton">
 </td></tr></table>
