@@ -10,7 +10,7 @@ git clone https://gitlab.irit.fr/toc/mathn7/optimisation-numerique/projet-optinu
 
 ## Organisation des sources
 
-Les sujets liés au projet se trouvent dans les notebooks du répertoire `src`. Voici l'ordre des sujets :
+Les sujets liés au projet se trouvent dans les notebooks. Voici l'ordre des sujets :
 
 * Newton
 * Régions de confiance
