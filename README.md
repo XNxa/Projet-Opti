@@ -25,4 +25,4 @@ Si vous n'avez pas encore installer Julia sur votre compte N7 ou sur votre machi
 
 ## Illustration de la méthode de Newton
 
-![Newton](newton.gif)
+![newton](newton.gif)
