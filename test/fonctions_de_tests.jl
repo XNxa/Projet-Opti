@@ -1,8 +1,8 @@
 """
 Ce fichier contient toutes fonctions utilisés dans les tests des algorithmes :
-        - L'algorithme de Newton
-        - Les régions de confiance
-        - Le Lagrangien augmenté
+    - L'algorithme de Newton
+    - Les régions de confiance
+    - Le Lagrangien augmenté
 
 """
 # Les points initiaux
@@ -97,12 +97,13 @@ grad_contrainte2(x) = [2*x[1] ;2*x[2]]
 hess_contrainte2(x) = [2 0;0 2]
 
 # Affichage les sorties de l'algorithme des Régions de confiance
-function afficher_resultats(algo,nom_fct,point_init,xmin,fxmin,flag,sol_exacte,nbiters)
-	println("-------------------------------------------------------------------------")
-	printstyled("Résultats de : "*algo*" appliqué à "*nom_fct*" au point initial "*point_init*" :\n",bold=true,color=:blue)
-	println("  * xsol = ",xmin)
-	println("  * f(xsol) = ",fxmin)
-	println("  * nb_iters = ",nbiters)
-	println("  * flag = ",flag)
-	println("  * sol_exacte : ", sol_exacte)
+function afficher_resultats(algo, nom_fct, x0, x_sol, f_sol, flag, nbiters, solution)
+    println("-------------------------------------------------------------------------")
+    printstyled("Résultats de : ",algo, " appliqué à ", nom_fct, ":\n", bold=true, color=:blue)
+    println("  * x0       = ", x0)
+    println("  * x_sol    = ", x_sol)
+    println("  * f(x_sol) = ", f_sol)
+    println("  * nb_iters = ", nbiters)
+    println("  * flag     = ", flag)
+    println("  * solution = ", solution)
 end

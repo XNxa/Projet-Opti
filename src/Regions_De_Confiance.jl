@@ -1,91 +1,68 @@
-@doc doc"""
-
-#### Objet
-
-Minimise une fonction de ``\mathbb{R}^{n}`` à valeurs dans ``\mathbb{R}`` en utilisant l'algorithme des régions de confiance. 
-
-La solution approchées des sous-problèmes quadratiques est calculé 
-par le pas de Cauchy ou le pas issu de l'algorithme du gradient conjugue tronqué
-
-#### Syntaxe
-```julia
-xmin, fxmin, flag, nb_iters = Regions_De_Confiance(algo,f,gradf,hessf,x0,option)
-```
-
-#### Entrées :
-
-   - algo        : (String) string indicant la méthode à utiliser pour calculer le pas
-        - "gct"   : pour l'algorithme du gradient conjugué tronqué
-        - "cauchy": pour le pas de Cauchy
-   - f           : (Function) la fonction à minimiser
-   - gradf       : (Function) le gradient de la fonction f
-   - hessf       : (Function) la hessiene de la fonction à minimiser
-   - x0          : (Array{Float,1}) point de départ
-   - options     : (Array{Float,1})
-     - deltaMax       : utile pour les m-à-j de la région de confiance
-                      ``R_{k}=\left\{x_{k}+s ;\|s\| \leq \Delta_{k}\right\}``
-     - gamma1, gamma2 : ``0 < \gamma_{1} < 1 < \gamma_{2}`` pour les m-à-j de ``R_{k}``
-     - eta1, eta2     : ``0 < \eta_{1} < \eta_{2} < 1`` pour les m-à-j de ``R_{k}``
-     - delta0         : le rayon de départ de la région de confiance
-     - max_iter       : le nombre maximale d'iterations
-     - Tol_abs        : la tolérence absolue
-     - Tol_rel        : la tolérence relative
-     - epsilon       : epsilon pour les tests de stagnation
-
-#### Sorties:
-
-   - xmin    : (Array{Float,1}) une approximation de la solution du problème : 
-               ``\min_{x \in \mathbb{R}^{n}} f(x)``
-   - fxmin   : (Float) ``f(x_{min})``
-   - flag    : (Integer) un entier indiquant le critère sur lequel le programme s'est arrêté (en respectant cet ordre de priorité si plusieurs critères sont vérifiés)
-      - 0    : CN1
-      - 1    : stagnation du ``x``
-      - 2    : stagnation du ``f``
-      - 3    : nombre maximal d'itération dépassé
-   - nb_iters : (Integer)le nombre d'iteration qu'à fait le programme
-
-#### Exemple d'appel
-```julia
-algo="gct"
-f(x)=100*(x[2]-x[1]^2)^2+(1-x[1])^2
-gradf(x)=[-400*x[1]*(x[2]-x[1]^2)-2*(1-x[1]) ; 200*(x[2]-x[1]^2)]
-hessf(x)=[-400*(x[2]-3*x[1]^2)+2  -400*x[1];-400*x[1]  200]
-x0 = [1; 0]
-options = []
-xmin, fxmin, flag, nb_iters = Regions_De_Confiance(algo,f,gradf,hessf,x0,options)
-```
+using LinearAlgebra
+include("../src/cauchy.jl")
+include("../src/gct.jl")
 """
-function Regions_De_Confiance(algo,f::Function,gradf::Function,hessf::Function,x0,options)
+Approximation de la solution du problème min f(x), x ∈ Rⁿ.
 
-    if options == []
-        deltaMax = 10
-        gamma1 = 0.5
-        gamma2 = 2.00
-        eta1 = 0.25
-        eta2 = 0.75
-        delta0 = 2
-        max_iter = 1000
-        Tol_abs = sqrt(eps())
-        Tol_rel = 1e-15
-        epsilon = 1.e-2
-    else
-        deltaMax = options[1]
-        gamma1 = options[2]
-        gamma2 = options[3]
-        eta1 = options[4]
-        eta2 = options[5]
-        delta0 = options[6]
-        max_iter = options[7]
-        Tol_abs = options[8]
-        Tol_rel = options[9]
-        epsilon = options[10]
-    end
+L'algorithme des régions de confiance résout à chaque itération, un modèle quadratique
+de la fonction f dans une boule (appelée la région de confiance) de centre l'itéré 
+courant. Cette minimisation se fait soit par un pas de Cauchy ou par l'algorithme 
+du gradient conjugué tronqué.
 
-    n = length(x0)
-    xmin = zeros(n)
-    fxmin = f(xmin)
-    flag = 0
+# Syntaxe
+
+    x_sol, f_sol, flag, nb_iters, xs = regions_de_confiance(f, gradf, hessf, x0; kwargs...)
+
+# Entrées
+
+    - f       : (Function) la fonction à minimiser
+    - gradf   : (Function) le gradient de la fonction f
+    - hessf   : (Function) la hessienne de la fonction f
+    - x0      : (Vector{<:Real}) itéré initial
+    - kwargs  : les options sous formes d'arguments "keywords"
+        • max_iter      : (Integer) le nombre maximal d'iterations (optionnel, par défaut 5000)
+        • tol_abs       : (Real) la tolérence absolue (optionnel, par défaut 1e-10)
+        • tol_rel       : (Real) la tolérence relative (optionnel, par défaut 1e-8)
+        • epsilon       : (Real) le epsilon pour les tests de stagnation (optionnel, par défaut 1)
+        • Δ0            : (Real) le rayon initial de la région de confiance (optionnel, par défaut 2)
+        • Δmax          : (Real) le rayon maximal de la région de confiance (optionnel, par défaut 10)
+        • γ1, γ2        : (Real) les facteurs de mise à jour de la région de confiance (optionnel, par défaut 0.5 et 2)
+        • η1, η2        : (Real) les seuils pour la mise à jour de la région de confiance (optionnel, par défaut 0.25 et 0.75)
+        • algo_pas      : (String) l'algorithme de calcul du pas - "cauchy" ou "gct" (optionnel, par défaut "gct")
+        • max_iter_gct  : (Integer) le nombre maximal d'iterations du GCT (optionnel, par défaut 2*length(x0))
+
+# Sorties
+
+    - x_sol : (Vector{<:Real}) une approximation de la solution du problème
+    - f_sol : (Real) f(x_sol)
+    - flag  : (Integer) indique le critère sur lequel le programme s'est arrêté
+        • 0  : convergence
+        • 1  : stagnation du xk
+        • 2  : stagnation du f
+        • 3  : nombre maximal d'itération dépassé
+    - nb_iters : (Integer) le nombre d'itérations faites par le programme
+    - xs    : (Vector{Vector{<:Real}}) les itérés
+
+# Exemple d'appel
+
+    f(x)=100*(x[2]-x[1]^2)^2+(1-x[1])^2
+    gradf(x)=[-400*x[1]*(x[2]-x[1]^2)-2*(1-x[1]) ; 200*(x[2]-x[1]^2)]
+    hessf(x)=[-400*(x[2]-3*x[1]^2)+2  -400*x[1];-400*x[1]  200]
+    x0 = [1; 0]
+    x_sol, f_sol, flag, nb_iters, xs = regions_de_confiance(f, gradf, hessf, x0, algo_pas="gct")
+
+"""
+function regions_de_confiance(f::Function, gradf::Function, hessf::Function, x0::Vector{<:Real};
+    max_iter::Integer=5000, tol_abs::Real=1e-10, tol_rel::Real=1e-8, epsilon::Real=1, 
+    Δ0::Real=2, Δmax::Real=10, γ1::Real=0.5, γ2::Real=2, η1::Real=0.25, η2::Real=0.75, algo_pas::String="gct",
+    max_iter_gct::Integer = 2*length(x0))
+
+    #
+    x_sol = x0
+    f_sol = f(x_sol)
+    flag  = -1
     nb_iters = 0
+    xs = [x0] # vous pouvez faire xs = vcat(xs, [xk]) pour concaténer les valeurs
 
-    return xmin, fxmin, flag, nb_iters
+    return x_sol, f_sol, flag, nb_iters, xs
 end

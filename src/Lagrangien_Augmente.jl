@@ -1,92 +1,75 @@
-@doc doc"""
-#### Objet
-
-Résolution des problèmes de minimisation avec une contrainte d'égalité scalaire par l'algorithme du lagrangien augmenté.
-
-#### Syntaxe
-```julia
-xmin,fxmin,flag,iter,muks,lambdaks = Lagrangien_Augmente(algo,f,gradf,hessf,c,gradc,hessc,x0,options)
-```
-
-#### Entrées
-  - algo : (String) l'algorithme sans contraintes à utiliser:
-    - "newton"  : pour l'algorithme de Newton
-    - "cauchy"  : pour le pas de Cauchy
-    - "gct"     : pour le gradient conjugué tronqué
-  - f : (Function) la fonction à minimiser
-  - gradf       : (Function) le gradient de la fonction
-  - hessf       : (Function) la hessienne de la fonction
-  - c     : (Function) la contrainte [x est dans le domaine des contraintes ssi ``c(x)=0``]
-  - gradc : (Function) le gradient de la contrainte
-  - hessc : (Function) la hessienne de la contrainte
-  - x0 : (Array{Float,1}) la première composante du point de départ du Lagrangien
-  - options : (Array{Float,1})
-    1. epsilon     : utilisé dans les critères d'arrêt
-    2. tol         : la tolérance utilisée dans les critères d'arrêt
-    3. itermax     : nombre maximal d'itération dans la boucle principale
-    4. lambda0     : la deuxième composante du point de départ du Lagrangien
-    5. mu0, tho    : valeurs initiales des variables de l'algorithme
-
-#### Sorties
-- xmin : (Array{Float,1}) une approximation de la solution du problème avec contraintes
-- fxmin : (Float) ``f(x_{min})``
-- flag : (Integer) indicateur du déroulement de l'algorithme
-   - 0    : convergence
-   - 1    : nombre maximal d'itération atteint
-   - (-1) : une erreur s'est produite
-- niters : (Integer) nombre d'itérations réalisées
-- muks : (Array{Float64,1}) tableau des valeurs prises par mu_k au cours de l'exécution
-- lambdaks : (Array{Float64,1}) tableau des valeurs prises par lambda_k au cours de l'exécution
-
-#### Exemple d'appel
-```julia
 using LinearAlgebra
-algo = "gct" # ou newton|gct
-f(x)=100*(x[2]-x[1]^2)^2+(1-x[1])^2
-gradf(x)=[-400*x[1]*(x[2]-x[1]^2)-2*(1-x[1]) ; 200*(x[2]-x[1]^2)]
-hessf(x)=[-400*(x[2]-3*x[1]^2)+2  -400*x[1];-400*x[1]  200]
-c(x) =  (x[1]^2) + (x[2]^2) -1.5
-gradc(x) = [2*x[1] ;2*x[2]]
-hessc(x) = [2 0;0 2]
-x0 = [1; 0]
-options = []
-xmin,fxmin,flag,iter,muks,lambdaks = Lagrangien_Augmente(algo,f,gradf,hessf,c,gradc,hessc,x0,options)
-```
+include("../src/newton.jl")
+include("../src/regions_de_confiance.jl")
+"""
 
-#### Tolérances des algorithmes appelés
+Approximation d'une solution au problème 
 
-Pour les tolérances définies dans les algorithmes appelés (Newton et régions de confiance), prendre les tolérances par défaut définies dans ces algorithmes.
+    min f(x), x ∈ Rⁿ, sous la c c(x) = 0,
+
+par l'algorithme du lagrangien augmenté.
+
+# Syntaxe
+
+    x_sol, f_sol, flag, nb_iters, μs, λs = lagrangien_augmente(f, gradf, hessf, c, gradc, hessc, x0; kwargs...)
+
+# Entrées
+
+    - f      : (Function) la ftion à minimiser
+    - gradf  : (Function) le gradient de f
+    - hessf  : (Function) la hessienne de f
+    - c      : (Function) la c à valeur dans R
+    - gradc  : (Function) le gradient de c
+    - hessc  : (Function) la hessienne de c
+    - x0     : (Vector{<:Real}) itéré initial
+    - kwargs : les options sous formes d'arguments "keywords"
+        • max_iter  : (Integer) le nombre maximal d'iterations (optionnel, par défaut 1000)
+        • tol_abs   : (Real) la tolérence absolue (optionnel, par défaut 1e-10)
+        • tol_rel   : (Real) la tolérence relative (optionnel, par défaut 1e-8)
+        • λ0        : (Real) le multiplicateur de lagrange associé à c initial (optionnel, par défaut 2)
+        • μ0        : (Real) le facteur initial de pénalité de la c (optionnel, par défaut 10)
+        • τ         : (Real) le facteur d'accroissement de μ (optionnel, par défaut 2)
+        • algo_noc  : (String) l'algorithme sans c à utiliser (optionnel, par défaut "rc-gct")
+            * "newton"    : pour l'algorithme de Newton
+            * "rc-cauchy" : pour les régions de confiance avec pas de Cauchy
+            * "rc-gct"    : pour les régions de confiance avec gradient conjugué tronqué
+
+# Sorties
+
+    - x_sol    : (Vector{<:Real}) une approximation de la solution du problème
+    - f_sol    : (Real) f(x_sol)
+    - flag     : (Integer) indique le critère sur lequel le programme s'est arrêté
+        • 0 : convergence
+        • 1 : nombre maximal d'itération dépassé
+    - nb_iters : (Integer) le nombre d'itérations faites par le programme
+    - μs       : (Vector{<:Real}) tableau des valeurs prises par μk au cours de l'exécution
+    - λs       : (Vector{<:Real}) tableau des valeurs prises par λk au cours de l'exécution
+
+# Exemple d'appel
+
+    f(x)=100*(x[2]-x[1]^2)^2+(1-x[1])^2
+    gradf(x)=[-400*x[1]*(x[2]-x[1]^2)-2*(1-x[1]) ; 200*(x[2]-x[1]^2)]
+    hessf(x)=[-400*(x[2]-3*x[1]^2)+2  -400*x[1];-400*x[1]  200]
+    c(x) =  x[1]^2 + x[2]^2 - 1.5
+    gradc(x) = 2*x
+    hessc(x) = [2 0; 0 2]
+    x0 = [1; 0]
+    x_sol, _ = lagrangien_augmente(f, gradf, hessf, c, gradc, hessc, x0, algo_noc="rc-gct")
 
 """
-function Lagrangien_Augmente(algo,fonc::Function,contrainte::Function,gradfonc::Function,
-        hessfonc::Function,grad_contrainte::Function,hess_contrainte::Function,x0,options)
+function lagrangien_augmente(f::Function, gradf::Function, hessf::Function, 
+        c::Function, gradc::Function, hessc::Function, x0::Vector{<:Real}; 
+        max_iter::Integer=1000, tol_abs::Real=1e-10, tol_rel::Real=1e-8,
+        λ0::Real=2, μ0::Real=10, τ::Real=2, algo_noc::String="rc-gct")
 
-    	if options == []
-		epsilon = 1e-2
-		tol = 1e-5
-		itermax = 1000
-		lambda0 = 2
-		mu0 = 100
-		tho = 2
-	else
-		epsilon = options[1]
-		tol = options[2]
-		itermax = options[3]
-		lambda0 = options[4]
-		mu0 = options[5]
-		tho = options[6]
-	end
+    #
+    x_sol = x0
+    f_sol = f(x_sol)
+    flag  = -1
+    nb_iters = 0
+    μs = [μ0] # vous pouvez faire μs = vcat(μs, μk) pour concaténer les valeurs
+    λs = [λ0]
 
-  n = length(x0)
-  xmin = zeros(n)
-        fxmin = 0
-        flag = 0
-        iter = 0
-  muk = mu0
-  muks = [mu0]
-  lambdak = lambda0
-  lambdaks = [lambda0]
+    return x_sol, f_sol, flag, nb_iters, μs, λs
 
-        
-        return xmin,fxmin,flag,iter, muks, lambdaks
 end

@@ -2,15 +2,12 @@
 
 ## Récupérer les sources
 
-Pour récupérer les sources, il faut cloner ce dépot git : 
-
-```bash
-git clone https://gitlab.irit.fr/toc/mathn7/optimisation-numerique/projet-optinum.git
-```
+Pour récupérer les sources, il faut cloner ce dépot git. Vous pouvez suivre les instructions : 
+[Cloner un dépôt Gitlab](https://gitlab.irit.fr/toc/etu-n7/documentation/-/wikis/Cloner-un-projet-Gitlab).
 
 ## Organisation des sources
 
-Les sujets liés au projet se trouvent dans les notebooks. Voici l'ordre des sujets :
+Les sujets liés au projet se trouvent dans les notebooks du répertoire `notebooks`. Voici l'ordre des sujets :
 
 * Newton
 * Régions de confiance
@@ -20,9 +17,9 @@ Pour réaliser le projet vous aurez besoin de cette [documentation](doc-projet.p
 
 ## Installation de Julia
 
-Si vous n'avez pas encore installer Julia sur votre compte N7 ou sur votre machine personnelle, suivez les indications :
-[Utilisation de Julia à l'N7](https://gitlab.irit.fr/toc/mathn7/wiki/-/wikis/Utilisation-de-Julia-à-l'N7).
+Si vous n'avez pas encore installer Julia sur votre compte N7 ou sur votre machine personnelle, suivez les instructions :
+[Utilisation de Julia à l'N7](https://gitlab.irit.fr/toc/etu-n7/documentation/-/wikis/Utilisation-de-Julia-à-l'N7).
 
 ## Illustration de la méthode de Newton
 
-![newton](newton.gif)
+![Newton](newton.gif)
