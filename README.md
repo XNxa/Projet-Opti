@@ -13,7 +13,7 @@ Les sujets liés au projet se trouvent dans les notebooks du répertoire `notebo
 * Régions de confiance
 * Lagrangien augmenté
 
-Pour réaliser le projet vous aurez besoin de cette [documentation]([doc-projet.pdf](https://gitlab.irit.fr/toc/etu-n7/projet-optinum/-/raw/master/doc-projet.pdf)) qui décrit les différents algorithmes à implémenter.
+Pour réaliser le projet vous aurez besoin de cette [documentation](https://gitlab.irit.fr/toc/etu-n7/projet-optinum/-/raw/master/doc-projet.pdf) qui décrit les différents algorithmes à implémenter.
 
 ## Installation de Julia
 
