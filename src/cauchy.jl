@@ -1,4 +1,4 @@
-using LinearAlgebra
+    using LinearAlgebra
 """
 Approximation de la solution du problème 
 
@@ -33,6 +33,32 @@ Approximation de la solution du problème
 function cauchy(g::Vector{<:Real}, H::Matrix{<:Real}, Δ::Real; tol_abs::Real = 1e-10)
 
     s = zeros(length(g))
+
+    a = g' * H * g
+    
+    b = -norm(g)^2
+    
+    t = -b/a
+
+    borne_max = Δ / norm(g)
+
+    if norm(g) ≈ 0 atol=tol_abs
+        t = 0
+    else
+        if a > 0
+            if t > borne_max
+                t = borne_max
+            elseif t < 0
+                t = 0
+            end
+        elseif 1/2 * a *  borne_max^2 + b * borne_max > 0
+            t = 0
+        else 
+            t = borne_max 
+        end
+    end
+    
+    s = -t*g
 
     return s
 end

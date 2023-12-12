@@ -59,10 +59,59 @@ function regions_de_confiance(f::Function, gradf::Function, hessf::Function, x0:
 
     #
     x_sol = x0
-    f_sol = f(x_sol)
+    xk = x_sol
     flag  = -1
     nb_iters = 0
     xs = [x0] # vous pouvez faire xs = vcat(xs, [xk]) pour concaténer les valeurs
+    Δ = Δ0
+    
+    function mk(s, xk)
+        return f(xk)+gradf(xk)'*s+1/2*s'*hessf(xk)*s
+    end
+    
+    while flag == -1
+        maj = false
+        nb_iters += 1
 
+        if algo_pas == "gct"
+            sk = gct(gradf(x_sol), hessf(x_sol), Δ, max_iter=max_iter_gct)
+        elseif algo_pas == "cauchy"
+            sk = cauchy(gradf(x_sol), hessf(x_sol), Δ)
+        else
+            throw(ArgumentError(algo_pas * "must be either \"gct\" or \"cauchy\""))
+        end
+        
+        
+        ρk = (f(x_sol) - f(x_sol + sk))/(mk(zeros(length(sk)), x_sol) - mk(sk, x_sol))
+        
+        if ρk >= η1
+            xk = x_sol
+            x_sol = x_sol + sk
+            maj = true
+        end
+
+        if ρk >= η2
+            Δ = min(γ2*Δ, Δmax)
+        elseif ρk >= η1
+            Δ = Δ
+        else
+            Δ = γ1*Δ
+        end
+
+        xs = vcat(xs, [x_sol])
+
+        # Maj des critères
+        if norm(gradf(x_sol)) <= max(tol_rel * norm(gradf(x0)), tol_abs)
+            flag = 0
+        elseif maj && (norm(x_sol - xk) <= epsilon * max(tol_rel*norm(xk), tol_abs))
+            flag = 1
+        elseif maj && abs(f(x_sol) - f(xk)) <= epsilon * max(tol_rel * abs(f(xk)), tol_abs)
+            flag = 2
+        elseif nb_iters >= max_iter
+            flag = 3
+        end
+    end
+      
+    f_sol = f(x_sol)
     return x_sol, f_sol, flag, nb_iters, xs
 end

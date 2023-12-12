@@ -44,13 +44,39 @@ function newton(f::Function, gradf::Function, hessf::Function, x0::Union{Real,Ve
     tol_abs::Real = 1e-10, 
     tol_rel::Real = 1e-8, 
     epsilon::Real = 1)
-
     #
-    x_sol = x0
-    f_sol = f(x_sol)
-    flag  = -1
-    nb_iters = 0
-    xs = [x0] # vous pouvez faire xs = vcat(xs, [xk]) pour concaténer les valeurs
+   
+   x_sol = x0
+   flag  = -1
+   nb_iters = 0
+   xs = [x0] # vous pouvez faire xs = vcat(xs, [xk]) pour concaténer les valeurs
 
-    return x_sol, f_sol, flag, nb_iters, xs
+   if norm(gradf(x_sol)) <= max(tol_rel * norm(gradf(x0)), tol_abs)
+      flag = 0
+   else
+      while flag == -1
+         nb_iters += 1
+
+         # Algo
+         dk = hessf(x_sol) \ -gradf(x_sol)
+         xk = x_sol
+         x_sol = x_sol + dk
+         xs = vcat(xs, [x_sol])
+
+         # Maj des critères
+         if norm(gradf(x_sol)) <= max(tol_rel * norm(gradf(x0)), tol_abs)
+            flag = 0
+         elseif norm(x_sol - xk) <= epsilon * max(tol_rel*norm(xk), tol_abs)
+            flag = 1
+         elseif abs(f(x_sol) - f(xk)) <= epsilon * max(tol_rel * abs(f(xk)), tol_abs)
+            flag = 2
+         elseif nb_iters + 1 >= max_iter
+            flag = 3 
+         end
+
+      end
+   end
+   
+   f_sol = f(x_sol)
+   return x_sol, f_sol, flag, nb_iters, xs
 end

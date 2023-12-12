@@ -1,6 +1,6 @@
 using LinearAlgebra
 include("../src/newton.jl")
-include("../src/regions_de_confiance.jl")
+include("../src/Regions_De_Confiance.jl")
 """
 
 Approximation d'une solution au problème 
@@ -63,6 +63,9 @@ function lagrangien_augmente(f::Function, gradf::Function, hessf::Function,
         λ0::Real=2, μ0::Real=10, τ::Real=2, algo_noc::String="rc-gct")
 
     #
+
+    algo = (algo_noc == "rc-gct") ? "gct" : "cauchy"
+
     x_sol = x0
     f_sol = f(x_sol)
     flag  = -1
@@ -70,6 +73,53 @@ function lagrangien_augmente(f::Function, gradf::Function, hessf::Function,
     μs = [μ0] # vous pouvez faire μs = vcat(μs, μk) pour concaténer les valeurs
     λs = [λ0]
 
-    return x_sol, f_sol, flag, nb_iters, μs, λs
+    k = 0
+    β = 0.9
+    ηchapo = 0.1258925
+    α  = 0.1
+    μₖ = μ0
+    ε₀ = 1/μₖ
+    εₖ = 1/μₖ
+    ηₖ =  ηchapo/(μ0^α)
+    λₖ = λ0
 
+    La(x) = f(x) + λₖ' * c(x) + μₖ/2 * norm(c(x))^2 
+
+    gradLa(x) = gradf(x) + λₖ'*gradc(x) + μₖ * gradc(x) * c(x)
+
+    hessLa(x) = hessf(x) + λₖ'*hessc(x) + μₖ * hessc(x) * c(x) + μₖ * gradc(x) * gradc(x)'
+    
+    gLA0 = gradLa(x0)
+
+    while flag == -1
+        k = k+1
+
+        xk = x_sol
+        x_sol, _, _ , _ , _ = regions_de_confiance(La, gradLa, hessLa, x_sol, algo_pas=algo)
+
+        if norm(c(x_sol)) <= ηₖ
+            λₖ = λₖ + μₖ * c(x_sol)
+            μₖ = μₖ
+            εₖ = εₖ/μₖ
+            ηₖ = ηₖ/(μₖ^β)
+        else
+            λₖ = λₖ
+            μₖ = τ * μₖ
+            εₖ = ε₀ / μₖ
+            ηₖ = ηchapo/(μₖ^α)
+        end
+
+        # Maj des critères
+        if norm(gradLa(x_sol)) <= max(tol_rel * norm(gLA0), tol_abs)
+            flag = 0
+        elseif k + 1 >= max_iter
+            flag = 3 
+        end
+
+        μs = vcat(μs, μₖ)
+        λs = vcat(λs, λₖ)
+    end
+
+    return x_sol, f_sol, flag, nb_iters, μs, λs
 end
+
