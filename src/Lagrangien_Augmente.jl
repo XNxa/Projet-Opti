@@ -69,7 +69,7 @@ function lagrangien_augmente(f::Function, gradf::Function, hessf::Function,
     x_sol = x0
     f_sol = f(x_sol)
     flag  = -1
-    nb_iters = 0
+    k=0
     μs = [μ0] # vous pouvez faire μs = vcat(μs, μk) pour concaténer les valeurs
     λs = [λ0]
 
@@ -94,7 +94,6 @@ function lagrangien_augmente(f::Function, gradf::Function, hessf::Function,
     while flag == -1
         k = k+1
 
-        xk = x_sol
         x_sol, _, _ , _ , _ = regions_de_confiance(La, gradLa, hessLa, x_sol, algo_pas=algo)
 
         if norm(c(x_sol)) <= ηₖ
@@ -120,6 +119,6 @@ function lagrangien_augmente(f::Function, gradf::Function, hessf::Function,
         λs = vcat(λs, λₖ)
     end
 
-    return x_sol, f_sol, flag, nb_iters, μs, λs
+    return x_sol, f_sol, flag, k, μs, λs
 end
 

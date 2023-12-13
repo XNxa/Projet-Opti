@@ -75,9 +75,9 @@ function gct(g::Vector{<:Real}, H::Matrix{<:Real}, Δ::Real;
         end
 
         s = s + α*p
-        👴 = g
+        oldg = g
         g = g + α*H*p
-        β = (g'*g)/(👴'*👴)
+        β = (g'*g)/(oldg'*oldg)
         p = -g + β * p
         j = j + 1
     end
